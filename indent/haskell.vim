@@ -35,6 +35,11 @@ fun! HaskellGetIndent(lnum)
         return match(previousLine, '=')
     endif
 
+    " case
+    if previousLine =~# '\<case\>.*\<of$'
+        return currentIndent + &shiftwidth
+    endif
+
     " keep previous indentation level if no rule matches
     return -1
 endfun
