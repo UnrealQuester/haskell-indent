@@ -28,6 +28,21 @@ fun! HaskellGetIndent(lnum)
         return currentIndent + &shiftwidth
     endif
 
+    " unmatched [
+    if previousLine =~# '\[[^\]]*$'
+        return match(previousLine, '\[')
+    endif
+
+    " unmatched {
+    if previousLine =~# '{[^}]*$'
+        return match(previousLine, '{')
+    endif
+
+    " unmatched (
+    if previousLine =~# '([^)]*$'
+        return match(previousLine, '(')
+    endif
+
     " data declaration, start below the equals sign
     " in case the user wants to create a sum type
     " across multiple lines
