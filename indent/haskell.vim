@@ -61,6 +61,13 @@ fun! HaskellGetIndent(lnum)
         return currentIndent + &shiftwidth
     endif
 
+    " function
+    " handles cases like f x xs = ...
+    " and x <$> xs = ..
+    if previousLine =~# '^\s*\S.*\s\+='
+      return currentIndent + &shiftwidth
+    endif
+
     " keep previous indentation level if no rule matches
     return -1
 endfun
