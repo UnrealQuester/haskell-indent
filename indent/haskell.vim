@@ -23,6 +23,12 @@ fun! HaskellGetIndent(lnum)
         return 0
     endif
 
+    " no indenting is done in comments in case they match haskell syntax
+    if synIDattr(synIDtrans(synID(lnum, currentIndent + 1, 1)), 'name')
+                \ =~# '\%(Comment\|String\)$'
+        return currentIndent
+    endif
+
     " class or instance
     if previousLine =~# '^class\>\|^instance\>'
         return currentIndent + &shiftwidth
