@@ -61,6 +61,11 @@ fun! HaskellGetIndent(lnum)
         return currentIndent + &shiftwidth
     endif
 
+    " where|do at the end of the line
+    if previousLine =~# '\<where\>\|\<do\>$'
+        return currentIndent + &shiftwidth
+    endif
+
     " function
     " handles cases like f x xs = ...
     " and x <$> xs = ..
