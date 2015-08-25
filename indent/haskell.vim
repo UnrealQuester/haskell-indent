@@ -29,6 +29,10 @@ fun! HaskellGetIndent(lnum)
         return currentIndent
     endif
 
+    if currentLine =~# '^\s*where$'
+        return currentIndent + &shiftwidth
+    endif
+
     " class or instance
     if previousLine =~# '^class\>\|^instance\>'
         return currentIndent + &shiftwidth
