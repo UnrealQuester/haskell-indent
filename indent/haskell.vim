@@ -69,7 +69,7 @@ fun! HaskellGetIndent(lnum)
     " function
     " handles cases like f x xs = ...
     " and x <$> xs = ..
-    if previousLine =~# '^\s*\S.*\s\+='
+    if previousLine =~# '^\s*\S.*\s\+=$'
       return currentIndent + &shiftwidth
     endif
 
