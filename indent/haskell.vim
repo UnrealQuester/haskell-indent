@@ -66,7 +66,7 @@ fun! HaskellGetIndent(lnum)
     endif
 
     " where|do|if|then|else at the end of the line
-    if previousLine =~# '\<where\>\|\<do\>\<if\>\|\<then\>\|\<else\>$'
+    if previousLine =~# '\<where\>\|\<do\>\|\<if\>\|\<then\>\|\<else\>$'
         return currentIndent + &shiftwidth
     endif
 
